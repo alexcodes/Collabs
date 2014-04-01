@@ -1,0 +1,45 @@
+package collabs.model.events;
+
+/**
+ * Author: Aleksey A.
+ * Date: 28.03.14
+ * Time: 22:06
+ */
+public class ServerDocumentEvent extends ServerEvent {
+    private int id;
+    private String oldFragment;
+    private String newFragment;
+    private int offset;
+
+    public ServerDocumentEvent(int id, int offset, CharSequence oldFragment, CharSequence newFragment) {
+        this.id = id;
+        this.offset = offset;
+        this.oldFragment = (String) oldFragment;
+        this.newFragment = (String) newFragment;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getOldFragment() {
+        return oldFragment;
+    }
+
+    public String getNewFragment() {
+        return newFragment;
+    }
+
+    public int getOffset() {
+        return offset;
+    }
+
+    /**
+     * Example: id=12[offset=3; old="f"; new=""]
+     * @return info
+     */
+    @Override
+    public String toString() {
+        return "id=" + id + "[\"offset=" + offset + "; old=\"" + oldFragment + "\"; new=\"" + newFragment + "\"]";
+    }
+}

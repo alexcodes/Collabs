@@ -1,0 +1,5 @@
+Plugin for Intellij IDEA for real-time collaborative editing
+2014
+
+TODO exclude exception handlers from server
+TODO fool protection null pointers in Manager
