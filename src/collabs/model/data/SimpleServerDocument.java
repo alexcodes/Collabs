@@ -81,13 +81,13 @@ public class SimpleServerDocument implements ServerDocument {
     }
 
     @Override
-    public synchronized void handleEvent(ServerDocumentEvent event) {
+    public synchronized void handleEvent(ServerDocumentEvent event, Connection from) {
         if (event.getOldFragment().isEmpty()) {
             insert(event.getNewFragment(), event.getOffset());
         } else if (event.getNewFragment().isEmpty()) {
             backspace(event.getOffset(), event.getOldFragment().length());
         }
-        sendToListeners(event);
+        sendToListeners(event, from);
     }
 
     @Override
@@ -118,9 +118,11 @@ public class SimpleServerDocument implements ServerDocument {
      * Simply sends on events to listeners
      * @param event Event
      */
-    private void sendToListeners(ServerDocumentEvent event) {
+    private void sendToListeners(ServerDocumentEvent event, Connection from) {
         for (ServerDocumentListener listener : listeners) {
-            listener.documentChanged(event);
+            if (listener.getConnection() != from) {
+                listener.documentChanged(event);
+            }
         }
     }
 

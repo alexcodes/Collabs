@@ -40,19 +40,36 @@
   </project-components>
 
   <actions>
-    <group id="PluginMenu" text="Collabs" description="Menu for plugin options">
-        <add-to-group group-id="MainMenu" anchor="last"/>
-        <action class="collabs.model.actions.ConnectAction" id="actions.ConnectAction" text="Connect..."/>
-        <action class="collabs.model.actions.DisconnectAction" id="actions.DisconnectAction" text="Disconnect"/>
-        <action class="collabs.model.actions.RegisterDocumentAction" id="actions.RegisterDocumentAction" text="Register Document"/>
-        <!--<action class="collabs.model.actions.SubscribeAction" id="actions.SubscribeAction" text="Subscribe"/>-->
-        <action class="collabs.model.actions.AddListenerAction" id="actions.AddListenerAction" text="Add Listener"/>
+      <action class="collabs.model.actions.ConnectAction" id="actions.ConnectAction"
+              text="Connect..." description="Connect to server"/>
+      <action class="collabs.model.actions.DisconnectAction" id="actions.DisconnectAction"
+              text="Disconnect" description="Disconnect from server"/>
+      <action class="collabs.model.actions.RegisterDocumentAction" id="actions.RegisterDocumentAction"
+              text="Register Document" description="Create copy of this document on server"/>
+      <action class="collabs.model.actions.AddListenerAction" id="actions.AddListenerAction"
+              text="Add Listener" description="Bind bidirectional this document and server one"/>
+      <!--??Delete??-->
+      <action class="collabs.model.actions.SubscribeAction" id="actions.SubscribeAction"
+              text="Subscribe" description="Bind this document and server one"/>
 
-        <action class="collabs.model.actions.StartServerAction" id="actions.StartServerAction" text="Start Server"/>
-        <action class="collabs.model.actions.StopServerAction" id="actions.StopServerAction" text="Stop Server"/>
+      <action class="collabs.model.actions.StartServerAction" id="actions.StartServerAction" text="Start Server"/>
+      <action class="collabs.model.actions.StopServerAction" id="actions.StopServerAction" text="Stop Server"/>
 
-        <action class="collabs.model.actions.TestDialog" id="actions.TestDialog" text="Test Dialog"/>
-    </group>
+      <action class="collabs.model.actions.TestDialog" id="actions.TestDialog" text="Test Dialog"/>
+
+      <group id="CollabsMenu" text="Collabs" description="Menu for plugin options">
+          <add-to-group group-id="MainMenu" anchor="last"/>
+          <reference ref="actions.ConnectAction"/>
+          <reference ref="actions.DisconnectAction"/>
+          <reference ref="actions.RegisterDocumentAction"/>
+          <reference ref="actions.AddListenerAction"/>
+      </group>
+
+      <group id="CollabsEditor" popup="true" text="Collabs">
+          <add-to-group anchor="last" group-id="EditorPopupMenu"/>
+          <reference ref="actions.RegisterDocumentAction"/>
+          <reference ref="actions.AddListenerAction"/>
+      </group>
   </actions>
 
 </idea-plugin>

@@ -1,6 +1,6 @@
 package collabs.connection.client;
 
-import com.intellij.openapi.ui.Messages;
+import collabs.output.Output;
 
 import java.io.IOException;
 import java.net.Socket;
@@ -18,7 +18,7 @@ public class ClientConnection extends AbstractClientConnection {
 
     @Override
     void handleEvent(Object object) {
-        //Output.print("Received: " + object);
-        Messages.showInfoMessage(object.toString(), "Received");
+        Output.print("Received: " + object);
+        //Messages.showInfoMessage(object.toString(), "Received");
     }
 }

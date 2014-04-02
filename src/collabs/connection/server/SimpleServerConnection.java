@@ -3,10 +3,7 @@ package collabs.connection.server;
 import collabs.model.data.Container;
 import collabs.model.data.ServerDocument;
 import collabs.model.data.ServerDocumentListener;
-import collabs.model.events.RegisterDocumentEvent;
-import collabs.model.events.ServerDocumentEvent;
-import collabs.model.events.SubscribeDocumentEvent;
-import collabs.model.events.UnsubscribeDocumentEvent;
+import collabs.model.events.*;
 import collabs.output.Output;
 
 import java.net.Socket;
@@ -28,14 +25,14 @@ public class SimpleServerConnection extends AbstractServerConnection {
         if (object == null) {
             this.interrupt();
         } else {
-            Container documents = getServerCore().getDocuments();
+            Container container = getServer().getDocuments();
             //register new document
             if (object instanceof RegisterDocumentEvent) {
-                documents.addDocument(((RegisterDocumentEvent) object).getServerDocument());
+                container.addDocument(((RegisterDocumentEvent) object).getServerDocument());
             }
             //subscribe on document events
             if (object instanceof SubscribeDocumentEvent) {
-                ServerDocument doc = documents.getDocumentById(((SubscribeDocumentEvent) object).getId());
+                ServerDocument doc = container.getDocumentById(((SubscribeDocumentEvent) object).getId());
                 doc.addListener(new ServerDocumentListener(this) {
                     @Override
                     public void documentChanged(ServerDocumentEvent event) {
@@ -45,13 +42,13 @@ public class SimpleServerConnection extends AbstractServerConnection {
             }
             //unsubscribe from document events
             if (object instanceof UnsubscribeDocumentEvent) {
-                ServerDocument doc = documents.getDocumentById(((UnsubscribeDocumentEvent) object).getId());
+                ServerDocument doc = container.getDocumentById(((UnsubscribeDocumentEvent) object).getId());
                 doc.removeListener(this);
             }
             //change document
             if (object instanceof ServerDocumentEvent) {
-                ServerDocument doc = documents.getDocumentById(((ServerDocumentEvent) object).getId());
-                doc.handleEvent((ServerDocumentEvent) object);
+                ServerDocument doc = container.getDocumentById(((ServerDocumentEvent) object).getId());
+                doc.handleEvent((ServerDocumentEvent) object, this);
             }
         }
     }

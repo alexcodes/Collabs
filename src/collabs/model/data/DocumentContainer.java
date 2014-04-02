@@ -1,5 +1,7 @@
 package collabs.model.data;
 
+import collabs.connection.Connection;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -19,6 +21,13 @@ public class DocumentContainer implements Container {
     @Override
     public synchronized void removeDocument(ServerDocument document) {
         documents.remove(document.getID());
+    }
+
+    @Override
+    public void removeConnectionFromDocuments(Connection connection) {
+        for (ServerDocument doc : documents.values()) {
+            doc.removeListener(connection);
+        }
     }
 
     @Override

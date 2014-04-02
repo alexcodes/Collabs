@@ -19,7 +19,7 @@ public interface ServerDocument extends Serializable {
     public void setText(String text);
     public void insert(String text, int index);
     public void backspace(int index, int count);
-    public void handleEvent(ServerDocumentEvent event);
+    public void handleEvent(ServerDocumentEvent event, Connection from);
 
     public void addListener(ServerDocumentListener listener);
     public void removeListener(Connection connection);

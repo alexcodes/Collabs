@@ -44,7 +44,7 @@ abstract class AbstractServerConnection extends Thread implements Connection {
         while (! isInterrupted()) {
             handleEvent(receive());
         }
-        serverCore.removeConnection(this);
+        clearConnection();
     }
 
     @Override
@@ -72,8 +72,13 @@ abstract class AbstractServerConnection extends Thread implements Connection {
         }
     }
 
-    Server getServerCore() {
+    Server getServer() {
         return serverCore;
+    }
+
+    void clearConnection() {
+        serverCore.removeConnection(this);
+        serverCore.getDocuments().removeConnectionFromDocuments(this);
     }
 
     abstract void handleEvent(Object object);

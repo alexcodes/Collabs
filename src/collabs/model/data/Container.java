@@ -1,5 +1,7 @@
 package collabs.model.data;
 
+import collabs.connection.Connection;
+
 /**
  * Author: Aleksey A.
  * Date: 01.04.14
@@ -8,6 +10,7 @@ package collabs.model.data;
 public interface Container {
     public void addDocument(ServerDocument document);
     public void removeDocument(ServerDocument document);
+    public void removeConnectionFromDocuments(Connection connection);
     public ServerDocument getDocumentById(int id);
     //public ServerDocument getDocumentByName(String name, String path);
 }

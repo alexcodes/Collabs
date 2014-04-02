@@ -20,7 +20,7 @@ public class AddListenerAction extends AnAction {
     @Override
     public void actionPerformed(AnActionEvent e) {
         try {
-            //TODO replace with gui choice
+            //TODO replace by gui choice
             int id = getSelectedId();
             if (id == 0) {
                 Messages.showErrorDialog("No document was selected", "Error");

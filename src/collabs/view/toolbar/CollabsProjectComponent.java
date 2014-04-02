@@ -1,17 +1,12 @@
 package collabs.view.toolbar;
 
 import collabs.view.CollabsConstants;
-import com.intellij.openapi.actionSystem.ActionManager;
-import com.intellij.openapi.actionSystem.ActionToolbar;
-import com.intellij.openapi.actionSystem.DefaultActionGroup;
 import com.intellij.openapi.components.ProjectComponent;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.wm.ToolWindow;
 import com.intellij.openapi.wm.ToolWindowAnchor;
 import com.intellij.openapi.wm.ToolWindowManager;
 import org.jetbrains.annotations.NotNull;
-
-import java.awt.*;
 
 /**
  * Author: Aleksey A.
@@ -59,12 +54,12 @@ public class CollabsProjectComponent implements ProjectComponent, CollabsConstan
     private void initToolWindow() {
         panel = new CollabsPanel(this);
 
-        ActionManager actionManager = ActionManager.getInstance();
-        DefaultActionGroup actionGroup = new DefaultActionGroup(ID_ACTION_GROUP, false);
-        actionGroup.add(new PropertyToggleAction("Toggle", "2", null, this, ""));
-
-        ActionToolbar toolBar = actionManager.createActionToolbar(ID_ACTION_TOOLBAR, actionGroup, true);
-        panel.add(toolBar.getComponent(), BorderLayout.NORTH);
+//        ActionManager actionManager = ActionManager.getInstance();
+//        DefaultActionGroup actionGroup = new DefaultActionGroup(ID_ACTION_GROUP, false);
+//        actionGroup.add(new PropertyToggleAction("Toggle", "2", null, this, ""));
+//
+//        ActionToolbar toolBar = actionManager.createActionToolbar(ID_ACTION_TOOLBAR, actionGroup, true);
+//        panel.add(toolBar.getComponent(), BorderLayout.NORTH);
 
         ToolWindow toolWindow = getToolWindow();
         panel.setToolWindow(toolWindow);

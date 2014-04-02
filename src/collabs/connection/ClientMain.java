@@ -1,7 +1,8 @@
 package collabs.connection;
 
 import collabs.connection.client.ClientConnection;
-import collabs.output.Output;
+import collabs.model.core.Manager;
+import collabs.model.events.SubscribeDocumentEvent;
 
 import java.io.IOException;
 
@@ -14,7 +15,8 @@ public class ClientMain {
     public static void main(String[] args) throws IOException {
         Connection client = new ClientConnection("localhost", 1348);
         client.connect();
-        client.transmit("Message");
-        client.transmit(123);
+        client.transmit(new SubscribeDocumentEvent(Manager.getManager().getSelectedId()));
+        //client.transmit("Message");
+        //client.transmit(123);
     }
 }
