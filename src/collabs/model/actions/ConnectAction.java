@@ -3,10 +3,12 @@ package collabs.model.actions;
 import collabs.connection.Connection;
 import collabs.connection.client.ClientConnection;
 import collabs.model.core.Manager;
+import collabs.output.Output;
 import com.intellij.openapi.actionSystem.AnAction;
 import com.intellij.openapi.actionSystem.AnActionEvent;
 import com.intellij.openapi.ui.Messages;
 
+import javax.swing.*;
 import java.io.IOException;
 
 /**
@@ -15,6 +17,14 @@ import java.io.IOException;
  * Time: 0:16
  */
 public class ConnectAction extends AnAction {
+    public ConnectAction() {
+        super();
+    }
+
+    public ConnectAction(String text, String description, Icon icon) {
+        super(text, description, icon);
+    }
+
     @Override
     public void actionPerformed(AnActionEvent anActionEvent) {
         String ip = Messages.showInputDialog(
@@ -24,6 +34,9 @@ public class ConnectAction extends AnAction {
                 "localhost",
                 new IPValidator()
         );
+        if (checkEmpty(ip)) {
+            return;
+        }
         String port = Messages.showInputDialog(
                 "Enter port:",
                 "Connection",
@@ -31,11 +44,15 @@ public class ConnectAction extends AnAction {
                 "1234",
                 new PortValidator()
         );
+        if (checkEmpty(port)) {
+            return;
+        }
 
         Connection connection = connect(ip, port);
         if (connection != null) {
-            Messages.showInfoMessage("Connected to " + ip + ":" + port, "Success");
             Manager.getManager().setConnection(connection);
+            Output.console("Connected to server");
+            Messages.showInfoMessage("Connected to " + ip + ":" + port, "Success");
         } else {
             Messages.showErrorDialog("Cannot connect to " + ip + ":" + port, "Error");
         }
@@ -58,5 +75,9 @@ public class ConnectAction extends AnAction {
             connection = new ClientConnection(ip, port);
         } catch (IOException ignored) {}
         return connection;
+    }
+
+    private boolean checkEmpty(String s) {
+        return s == null || s.isEmpty();
     }
 }

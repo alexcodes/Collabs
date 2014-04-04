@@ -37,6 +37,6 @@ public class RegisterDocumentEvent extends ServerEvent {
 
     @Override
     public String toString() {
-        return "Sharing: name=\"" + name + "\"; path=\"" + path + "\"";
+        return "Register: name=\"" + name + "\"; path=\"" + path + "\"";
     }
 }

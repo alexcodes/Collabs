@@ -1,7 +1,6 @@
 package collabs.view.toolbar;
 
-import collabs.model.actions.BindDocumentAction;
-import collabs.model.actions.UnbindDocumentAction;
+import collabs.model.actions.*;
 import collabs.view.CollabsConstants;
 import collabs.view.Loader;
 import com.intellij.openapi.actionSystem.ActionManager;
@@ -64,10 +63,16 @@ public class CollabsProjectComponent implements ProjectComponent, CollabsConstan
 
         ActionManager actionManager = ActionManager.getInstance();
         DefaultActionGroup actionGroup = new DefaultActionGroup(ID_ACTION_GROUP, false);
-        actionGroup.add(new BindDocumentAction("Bind Document",
-                "Bind bidirectional this document and server one", Loader.getIcon(ICON_BIND)));
-        actionGroup.add(new UnbindDocumentAction("Unbind document",
-                "Unbind document and server one", Loader.getIcon(ICON_UNBIND)));
+        actionGroup.add(new ConnectAction("Connect", "Connect to server",
+                Loader.getIcon(ICON_CONNECT)));
+        actionGroup.add(new DisconnectAction("Disconnect", "Disconnect from server",
+                Loader.getIcon(ICON_DISCONNECT)));
+        actionGroup.add(new RefreshListAction("Refresh", "Refresh list of registered documents",
+                Loader.getIcon(ICON_REFRESH)));
+        actionGroup.add(new BindDocumentAction("Bind Document", "Bind bidirectional this document and server one",
+                Loader.getIcon(ICON_BIND)));
+        actionGroup.add(new UnbindDocumentAction("Unbind document", "Unbind document and server one",
+                Loader.getIcon(ICON_UNBIND)));
 
         ActionToolbar toolBar = actionManager.createActionToolbar(ID_ACTION_TOOLBAR, actionGroup, true);
         panel.add(toolBar.getComponent(), BorderLayout.NORTH);

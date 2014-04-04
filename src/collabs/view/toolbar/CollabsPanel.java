@@ -1,9 +1,15 @@
 package collabs.view.toolbar;
 
+import collabs.model.core.ToolbarModel;
 import com.intellij.openapi.wm.ToolWindow;
+import com.intellij.ui.JBColor;
 import com.intellij.ui.components.JBList;
+import com.intellij.ui.components.JBScrollPane;
 
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
+import javax.swing.border.LineBorder;
+import javax.swing.border.TitledBorder;
 import java.awt.*;
 
 /**
@@ -26,25 +32,34 @@ public class CollabsPanel extends JPanel {
 
     private void buildGUI() {
         setLayout(new BorderLayout());
-        add(getCenter(), BorderLayout.CENTER);
-        add(getTop(), BorderLayout.NORTH);
+        add(getContent(), BorderLayout.CENTER);
     }
 
-    private JPanel getTop() {
-        JPanel panel = new JPanel(new FlowLayout());
-        panel.add(new JButton("Bind"));
-        panel.add(new JButton("Unbind"));
-        return panel;
-    }
+    private JPanel getContent() {
+        JPanel panel = new JPanel(new BorderLayout(10, 10));
+        panel.setBackground(JBColor.WHITE);
+        panel.setBorder(new EmptyBorder(5, 0, 0, 0));
+        JBScrollPane scrollPane;
 
-    private JPanel getCenter() {
-        JPanel panel = new JPanel(new BorderLayout());
         JBList jbList = new JBList("1. test.txt(collabs/action/)",
                 "2. Action.java(collabs/connection/server/)",
                 "3. Action.java(collabs/connection/server/)",
                 "4. Action.java(collabs/connection/server/)");
-        panel.add(jbList);
-        jbList.setListData(new String[]{"1. New value"});
+
+        scrollPane = new JBScrollPane(jbList);
+        scrollPane.setBorder(new TitledBorder(new LineBorder(JBColor.GRAY), "Registered documents"));
+        panel.add(scrollPane, BorderLayout.CENTER);
+        //jbList.setListData(new String[]{"1. New value"});
+
+        JTextArea textArea = new JTextArea();
+        textArea.setEditable(false);
+        textArea.setLineWrap(true);
+        textArea.setRows(15);
+        ToolbarModel.getToolbarModel().setConsoleView(textArea);
+        scrollPane = new JBScrollPane(textArea);
+        scrollPane.setBorder(new TitledBorder(new LineBorder(JBColor.GRAY), "Console"));
+        panel.add(scrollPane, BorderLayout.SOUTH);
+
         return panel;
     }
 
@@ -63,5 +78,6 @@ public class CollabsPanel extends JPanel {
                 frame.setVisible(true);
             }
         });
+
     }
 }

@@ -56,7 +56,7 @@ public class BindDocumentAction extends AnAction {
                 }
             });
             Messages.showInfoMessage("Document was linked to server one", "Success");
-        } catch (NullPointerException ex) {
+        } catch (Exception ex) {
             Messages.showErrorDialog("Try again", "Error");
         }
     }

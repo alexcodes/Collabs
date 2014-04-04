@@ -11,6 +11,7 @@ public interface Container {
     public void addDocument(ServerDocument document);
     public void removeDocument(ServerDocument document);
     public void removeConnectionFromDocuments(Connection connection);
+    public ServerDocument[] getDocuments();
     public ServerDocument getDocumentById(int id);
     //public ServerDocument getDocumentByName(String name, String path);
 }

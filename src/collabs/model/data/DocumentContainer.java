@@ -31,6 +31,11 @@ public class DocumentContainer implements Container {
     }
 
     @Override
+    public ServerDocument[] getDocuments() {
+        return documents.values().toArray(new ServerDocument[documents.size()]);
+    }
+
+    @Override
     public synchronized ServerDocument getDocumentById(int id) {
         return documents.get(id);
     }

@@ -50,6 +50,8 @@
               text="Bind Document" description="Bind bidirectional this document and server one"/>
       <action class="collabs.model.actions.UnbindDocumentAction" id="actions.UnbindDocumentAction"
               text="Unbind Document" description="Unbind document and server one"/>
+      <action class="collabs.model.actions.RefreshListAction" id="actions.RefreshListAction"
+              text="Refresh List" description="Refresh list of registered documents"/>
       <!--??Delete??-->
       <action class="collabs.model.actions.SubscribeAction" id="actions.SubscribeAction"
               text="Subscribe" description="Bind this document and server one"/>

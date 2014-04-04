@@ -17,8 +17,8 @@ public class ClientConnection extends AbstractClientConnection {
     }
 
     @Override
-    void handleEvent(Object object) {
-        Output.print("Received: " + object);
-        //Messages.showInfoMessage(object.toString(), "Received");
+    void handleEvent(Object event) {
+        Output.print("Received: " + event);
+        Output.console("Received: " + event);
     }
 }

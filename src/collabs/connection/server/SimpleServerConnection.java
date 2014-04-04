@@ -20,36 +20,62 @@ public class SimpleServerConnection extends AbstractServerConnection {
     }
 
     @Override
-    void handleEvent(Object object) {
-        Output.print("Received: " + object + "; from: " + this);
-        if (object == null) {
+    void handleEvent(Object event) {
+        Output.print("Received: " + event + "; from: " + this);
+        if (event == null) {
             this.interrupt();
         } else {
             Container container = getServer().getDocuments();
             //register new document
-            if (object instanceof RegisterDocumentEvent) {
-                container.addDocument(((RegisterDocumentEvent) object).getServerDocument());
+            if (event instanceof RegisterDocumentEvent) {
+                registerDocument((RegisterDocumentEvent) event, container);
             }
             //subscribe on document events
-            if (object instanceof SubscribeDocumentEvent) {
-                ServerDocument doc = container.getDocumentById(((SubscribeDocumentEvent) object).getId());
-                doc.addListener(new ServerDocumentListener(this) {
-                    @Override
-                    public void documentChanged(ServerDocumentEvent event) {
-                        transmit(event);
-                    }
-                });
+            if (event instanceof SubscribeDocumentEvent) {
+                subscribeDocument((SubscribeDocumentEvent) event, container);
             }
             //unsubscribe from document events
-            if (object instanceof UnsubscribeDocumentEvent) {
-                ServerDocument doc = container.getDocumentById(((UnsubscribeDocumentEvent) object).getId());
-                doc.removeListener(this);
+            if (event instanceof UnsubscribeDocumentEvent) {
+                unsubscribeDocument((UnsubscribeDocumentEvent) event, container);
             }
             //change document
-            if (object instanceof ServerDocumentEvent) {
-                ServerDocument doc = container.getDocumentById(((ServerDocumentEvent) object).getId());
-                doc.handleEvent((ServerDocumentEvent) object, this);
+            if (event instanceof ServerDocumentEvent) {
+                changeDocument((ServerDocumentEvent) event, container);
+            }
+            //refresh document list
+            if (event instanceof RefreshListEvent) {
+                refreshDocumentList((RefreshListEvent) event, container);
             }
         }
+    }
+
+    private void registerDocument(RegisterDocumentEvent event, Container container) {
+        container.addDocument(event.getServerDocument());
+        transmit("Registered!");
+    }
+
+    private void subscribeDocument(SubscribeDocumentEvent event, Container container) {
+        ServerDocument doc = container.getDocumentById(event.getId());
+        doc.addListener(new ServerDocumentListener(this) {
+            @Override
+            public void documentChanged(ServerDocumentEvent event) {
+                transmit(event);
+            }
+        });
+    }
+
+    private void unsubscribeDocument(UnsubscribeDocumentEvent event, Container container) {
+        ServerDocument doc = container.getDocumentById(event.getId());
+        doc.removeListener(this);
+    }
+
+    private void changeDocument(ServerDocumentEvent event, Container container) {
+        ServerDocument doc = container.getDocumentById(event.getId());
+        doc.handleEvent(event, this);
+    }
+
+    private void refreshDocumentList(RefreshListEvent event, Container container) {
+        RefreshListEvent listEvent = new RefreshListEvent(container.getDocuments());
+        transmit(listEvent);
     }
 }
