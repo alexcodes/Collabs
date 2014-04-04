@@ -3,3 +3,4 @@ Plugin for Intellij IDEA for real-time collaborative editing
 
 TODO exclude exception handlers from server
 TODO fool protection null pointers in Manager (if connection lost -> deal with it!)
+TODO Unbind document action

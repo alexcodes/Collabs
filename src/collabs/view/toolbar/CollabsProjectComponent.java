@@ -1,12 +1,20 @@
 package collabs.view.toolbar;
 
+import collabs.model.actions.BindDocumentAction;
+import collabs.model.actions.UnbindDocumentAction;
 import collabs.view.CollabsConstants;
+import collabs.view.Loader;
+import com.intellij.openapi.actionSystem.ActionManager;
+import com.intellij.openapi.actionSystem.ActionToolbar;
+import com.intellij.openapi.actionSystem.DefaultActionGroup;
 import com.intellij.openapi.components.ProjectComponent;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.wm.ToolWindow;
 import com.intellij.openapi.wm.ToolWindowAnchor;
 import com.intellij.openapi.wm.ToolWindowManager;
 import org.jetbrains.annotations.NotNull;
+
+import java.awt.*;
 
 /**
  * Author: Aleksey A.
@@ -54,14 +62,18 @@ public class CollabsProjectComponent implements ProjectComponent, CollabsConstan
     private void initToolWindow() {
         panel = new CollabsPanel(this);
 
-//        ActionManager actionManager = ActionManager.getInstance();
-//        DefaultActionGroup actionGroup = new DefaultActionGroup(ID_ACTION_GROUP, false);
-//        actionGroup.add(new PropertyToggleAction("Toggle", "2", null, this, ""));
-//
-//        ActionToolbar toolBar = actionManager.createActionToolbar(ID_ACTION_TOOLBAR, actionGroup, true);
-//        panel.add(toolBar.getComponent(), BorderLayout.NORTH);
+        ActionManager actionManager = ActionManager.getInstance();
+        DefaultActionGroup actionGroup = new DefaultActionGroup(ID_ACTION_GROUP, false);
+        actionGroup.add(new BindDocumentAction("Bind Document",
+                "Bind bidirectional this document and server one", Loader.getIcon(ICON_BIND)));
+        actionGroup.add(new UnbindDocumentAction("Unbind document",
+                "Unbind document and server one", Loader.getIcon(ICON_UNBIND)));
+
+        ActionToolbar toolBar = actionManager.createActionToolbar(ID_ACTION_TOOLBAR, actionGroup, true);
+        panel.add(toolBar.getComponent(), BorderLayout.NORTH);
 
         ToolWindow toolWindow = getToolWindow();
+        toolWindow.setIcon(Loader.getIcon(ICON_TOOLBAR));
         panel.setToolWindow(toolWindow);
     }
 

@@ -11,12 +11,22 @@ import com.intellij.openapi.editor.event.DocumentEvent;
 import com.intellij.openapi.editor.event.DocumentListener;
 import com.intellij.openapi.ui.Messages;
 
+import javax.swing.*;
+
 /**
  * Author: Aleksey A.
  * Date: 01.04.14
  * Time: 22:56
  */
-public class AddListenerAction extends AnAction {
+public class BindDocumentAction extends AnAction {
+    public BindDocumentAction() {
+        super();
+    }
+
+    public BindDocumentAction(String text, String description, Icon icon) {
+        super(text, description, icon);
+    }
+
     @Override
     public void actionPerformed(AnActionEvent e) {
         try {

@@ -46,8 +46,10 @@
               text="Disconnect" description="Disconnect from server"/>
       <action class="collabs.model.actions.RegisterDocumentAction" id="actions.RegisterDocumentAction"
               text="Register Document" description="Create copy of this document on server"/>
-      <action class="collabs.model.actions.AddListenerAction" id="actions.AddListenerAction"
-              text="Add Listener" description="Bind bidirectional this document and server one"/>
+      <action class="collabs.model.actions.BindDocumentAction" id="actions.AddListenerAction"
+              text="Bind Document" description="Bind bidirectional this document and server one"/>
+      <action class="collabs.model.actions.UnbindDocumentAction" id="actions.UnbindDocumentAction"
+              text="Unbind Document" description="Unbind document and server one"/>
       <!--??Delete??-->
       <action class="collabs.model.actions.SubscribeAction" id="actions.SubscribeAction"
               text="Subscribe" description="Bind this document and server one"/>
