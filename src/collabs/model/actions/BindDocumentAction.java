@@ -1,6 +1,8 @@
 package collabs.model.actions;
 
 import collabs.model.core.Manager;
+import collabs.model.core.ToolbarModel;
+import collabs.model.events.EventList;
 import collabs.model.events.ServerDocumentEvent;
 import collabs.model.events.SubscribeDocumentEvent;
 import com.intellij.openapi.actionSystem.AnAction;
@@ -36,9 +38,12 @@ public class BindDocumentAction extends AnAction {
                 Messages.showErrorDialog("No document was selected", "Error");
                 return;
             }
-            Manager.getManager().getConnection().transmit(new SubscribeDocumentEvent(id));
-
             Document document = e.getData(PlatformDataKeys.EDITOR).getDocument();
+            if (ToolbarModel.getToolbarModel().checkBindDocument(document)) {
+                Messages.showErrorDialog("This document was already binded", "Error");
+                return;
+            }
+
             document.addDocumentListener(new ExtendedDocumentListener(id) {
                 @Override
                 public void beforeDocumentChange(DocumentEvent event) {
@@ -47,14 +52,22 @@ public class BindDocumentAction extends AnAction {
 
                 @Override
                 public void documentChanged(DocumentEvent event) {
-                    Manager.getManager().getConnection().transmit(new ServerDocumentEvent(
+                    ServerDocumentEvent serverDocumentEvent = new ServerDocumentEvent(
                             getId(),
                             event.getOffset(),
                             event.getOldFragment(),
-                            event.getNewFragment())
+                            event.getNewFragment()
                     );
+                    long timestamp = ToolbarModel.getToolbarModel().getEventList().checkDuplicate(serverDocumentEvent);
+                    if (timestamp == EventList.NO_DUPLICATE) {
+                        Manager.getManager().getConnection().transmit(serverDocumentEvent);
+                    } else {
+                        ToolbarModel.getToolbarModel().getEventList().removeEvent(timestamp, serverDocumentEvent);
+                    }
                 }
             });
+            Manager.getManager().getConnection().transmit(new SubscribeDocumentEvent(id));
+            ToolbarModel.getToolbarModel().addBindDocument(id, document);
             Messages.showInfoMessage("Document was linked to server one", "Success");
         } catch (Exception ex) {
             Messages.showErrorDialog("Try again", "Error");
@@ -64,7 +77,7 @@ public class BindDocumentAction extends AnAction {
     private int getSelectedId() {
         //String[] values = new String[]{"one", "two", "three", "four", "five"};
         //Messages.showEditableChooseDialog("Message", "Title", Messages.getInformationIcon(), values, "initialValue", null);
-        return Manager.getManager().getSelectedId();
+        return ToolbarModel.getToolbarModel().getSelectedId();
     }
 
     private abstract class ExtendedDocumentListener implements DocumentListener {

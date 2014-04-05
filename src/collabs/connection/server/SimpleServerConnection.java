@@ -44,14 +44,15 @@ public class SimpleServerConnection extends AbstractServerConnection {
             }
             //refresh document list
             if (event instanceof RefreshListEvent) {
-                refreshDocumentList((RefreshListEvent) event, container);
+                refreshDocumentList(container);
             }
         }
     }
 
     private void registerDocument(RegisterDocumentEvent event, Container container) {
         container.addDocument(event.getServerDocument());
-        transmit("Registered!");
+        refreshDocumentList(container);
+        Output.print(container.toString());
     }
 
     private void subscribeDocument(SubscribeDocumentEvent event, Container container) {
@@ -74,7 +75,7 @@ public class SimpleServerConnection extends AbstractServerConnection {
         doc.handleEvent(event, this);
     }
 
-    private void refreshDocumentList(RefreshListEvent event, Container container) {
+    private void refreshDocumentList(Container container) {
         RefreshListEvent listEvent = new RefreshListEvent(container.getDocuments());
         transmit(listEvent);
     }

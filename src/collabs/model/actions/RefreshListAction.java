@@ -26,7 +26,7 @@ public class RefreshListAction extends AnAction {
     public void actionPerformed(AnActionEvent e) {
         try {
             Manager.getManager().getConnection().transmit(new RefreshListEvent());
-            Messages.showInfoMessage("Refresh request was sent", "Success");
+            //Messages.showInfoMessage("Refresh request was sent", "Success");
         } catch (Exception ex) {
             Messages.showErrorDialog("Refresh request was not sent", "Error");
         }

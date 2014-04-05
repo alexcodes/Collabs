@@ -131,10 +131,6 @@ public class SimpleServerDocument implements ServerDocument {
         return id;
     }
 
-    public synchronized boolean equals(ServerDocument doc) {
-        return hashCode() == doc.hashCode();
-    }
-
     @Override
     public String toString() {
         return id + "." + name + "(" + path + ")";

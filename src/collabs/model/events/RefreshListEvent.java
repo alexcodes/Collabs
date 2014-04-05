@@ -28,7 +28,9 @@ public class RefreshListEvent extends ServerEvent {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("Refresh request").append("\n");
+        sb.append("Refresh request: ")
+                .append(documents.length)
+                .append(" item(s)").append(documents.length > 0 ? "\n" : "");
         for (ServerDocument doc : documents) {
             sb.append(doc.toString()).append("\n");
         }

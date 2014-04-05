@@ -59,7 +59,7 @@ public class CollabsProjectComponent implements ProjectComponent, CollabsConstan
     }
 
     private void initToolWindow() {
-        panel = new CollabsPanel(this);
+        panel = new CollabsPanel();
 
         ActionManager actionManager = ActionManager.getInstance();
         DefaultActionGroup actionGroup = new DefaultActionGroup(ID_ACTION_GROUP, false);
@@ -67,6 +67,8 @@ public class CollabsProjectComponent implements ProjectComponent, CollabsConstan
                 Loader.getIcon(ICON_CONNECT)));
         actionGroup.add(new DisconnectAction("Disconnect", "Disconnect from server",
                 Loader.getIcon(ICON_DISCONNECT)));
+        actionGroup.add(new RegisterDocumentAction("Register document", "Register current document on server",
+                Loader.getIcon(ICON_REGISTER)));
         actionGroup.add(new RefreshListAction("Refresh", "Refresh list of registered documents",
                 Loader.getIcon(ICON_REFRESH)));
         actionGroup.add(new BindDocumentAction("Bind Document", "Bind bidirectional this document and server one",
@@ -79,7 +81,7 @@ public class CollabsProjectComponent implements ProjectComponent, CollabsConstan
 
         ToolWindow toolWindow = getToolWindow();
         toolWindow.setIcon(Loader.getIcon(ICON_TOOLBAR));
-        panel.setToolWindow(toolWindow);
+        panel.setToolWindow();
     }
 
     private ToolWindow getToolWindow() {

@@ -10,12 +10,22 @@ import com.intellij.openapi.editor.Document;
 import com.intellij.openapi.ui.Messages;
 import com.intellij.openapi.vfs.VirtualFile;
 
+import javax.swing.*;
+
 /**
  * Author: Aleksey A.
  * Date: 28.03.14
  * Time: 20:20
  */
 public class RegisterDocumentAction extends AnAction {
+    public RegisterDocumentAction() {
+        super();
+    }
+
+    public RegisterDocumentAction(String text, String description, Icon icon) {
+        super(text, description, icon);
+    }
+
     @Override
     public void actionPerformed(AnActionEvent e) {
         try {

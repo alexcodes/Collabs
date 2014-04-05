@@ -2,6 +2,7 @@ package collabs.model.core;
 
 import collabs.connection.Connection;
 import collabs.connection.server.Server;
+import collabs.model.events.RefreshListEvent;
 
 /**
  * Author: Aleksey A.
@@ -18,6 +19,10 @@ public class Manager {
 
     public static Manager getManager() {
         return manager;
+    }
+
+    public static void refresh() {
+        manager.refreshAll();
     }
 
     public void setConnection(Connection connection) {
@@ -48,6 +53,10 @@ public class Manager {
             server.stop();
             server = null;
         }
+    }
+
+    public void refreshAll() {
+        connection.transmit(new RefreshListEvent());
     }
 
     public int getSelectedId() {

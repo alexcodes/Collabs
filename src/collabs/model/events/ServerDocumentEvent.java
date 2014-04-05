@@ -34,6 +34,12 @@ public class ServerDocumentEvent extends ServerEvent {
         return offset;
     }
 
+    public boolean equals(ServerDocumentEvent event) {
+        return id == event.getId()
+                && oldFragment.equals(event.getOldFragment())
+                && newFragment.equals(event.getNewFragment());
+    }
+
     /**
      * Example: id=12[offset=3; old="f"; new=""]
      * @return info

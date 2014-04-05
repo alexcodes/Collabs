@@ -1,7 +1,6 @@
 package collabs.view.toolbar;
 
 import collabs.model.core.ToolbarModel;
-import com.intellij.openapi.wm.ToolWindow;
 import com.intellij.ui.JBColor;
 import com.intellij.ui.components.JBList;
 import com.intellij.ui.components.JBScrollPane;
@@ -18,16 +17,12 @@ import java.awt.*;
  * Time: 19:53
  */
 public class CollabsPanel extends JPanel {
-    private CollabsProjectComponent projectComponent;
-    private ToolWindow toolWindow;
 
-    public CollabsPanel(CollabsProjectComponent cpc) {
-        projectComponent = cpc;
+    public CollabsPanel() {
         buildGUI();
     }
 
-    public void setToolWindow(ToolWindow tw) {
-        toolWindow = tw;
+    public void setToolWindow() {
     }
 
     private void buildGUI() {
@@ -41,15 +36,11 @@ public class CollabsPanel extends JPanel {
         panel.setBorder(new EmptyBorder(5, 0, 0, 0));
         JBScrollPane scrollPane;
 
-        JBList jbList = new JBList("1. test.txt(collabs/action/)",
-                "2. Action.java(collabs/connection/server/)",
-                "3. Action.java(collabs/connection/server/)",
-                "4. Action.java(collabs/connection/server/)");
-
+        JBList jbList = new JBList();
+        ToolbarModel.getToolbarModel().setJbList(jbList);
         scrollPane = new JBScrollPane(jbList);
         scrollPane.setBorder(new TitledBorder(new LineBorder(JBColor.GRAY), "Registered documents"));
         panel.add(scrollPane, BorderLayout.CENTER);
-        //jbList.setListData(new String[]{"1. New value"});
 
         JTextArea textArea = new JTextArea();
         textArea.setEditable(false);
@@ -58,6 +49,7 @@ public class CollabsPanel extends JPanel {
         ToolbarModel.getToolbarModel().setConsoleView(textArea);
         scrollPane = new JBScrollPane(textArea);
         scrollPane.setBorder(new TitledBorder(new LineBorder(JBColor.GRAY), "Console"));
+        scrollPane.setAutoscrolls(true);
         panel.add(scrollPane, BorderLayout.SOUTH);
 
         return panel;
@@ -73,11 +65,10 @@ public class CollabsPanel extends JPanel {
                 frame.setLocation(1050, 20);
 
                 frame.getContentPane().setLayout(new BorderLayout(10, 10));
-                frame.getContentPane().add(new CollabsPanel(null));
+                frame.getContentPane().add(new CollabsPanel());
 
                 frame.setVisible(true);
             }
         });
-
     }
 }

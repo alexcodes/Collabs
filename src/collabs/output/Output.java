@@ -16,4 +16,9 @@ public class Output {
     public static synchronized void console(String x) {
         consoleView.print(x);
     }
+
+    public static synchronized void printBoth(String x) {
+        print(x);
+        console(x);
+    }
 }

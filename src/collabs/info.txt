@@ -4,8 +4,9 @@ Plugin for Intellij IDEA for real-time collaborative editing
 TODO exclude exception handlers from server
 TODO fool protection null pointers in Manager (if connection lost -> deal with it!)
 TODO unbind document (implementation)
+TODO on disconnect
 TODO client event handlers:
--refresh
 -document event
 
-TODO fix refresh!!
+FIX console view output!!
+-refresh

@@ -39,4 +39,14 @@ public class DocumentContainer implements Container {
     public synchronized ServerDocument getDocumentById(int id) {
         return documents.get(id);
     }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Registered documents: ").append(documents.size()).append("\n");
+        for (ServerDocument sd : documents.values()) {
+            sb.append(sd).append("\n");
+        }
+        return sb.toString();
+    }
 }

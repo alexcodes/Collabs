@@ -50,7 +50,7 @@ public class ConnectAction extends AnAction {
 
         Connection connection = connect(ip, port);
         if (connection != null) {
-            Manager.getManager().setConnection(connection);
+            onConnected(connection);
             Output.console("Connected to server");
             Messages.showInfoMessage("Connected to " + ip + ":" + port, "Success");
         } else {
@@ -73,8 +73,14 @@ public class ConnectAction extends AnAction {
         Connection connection = null;
         try {
             connection = new ClientConnection(ip, port);
+            connection.connect();
         } catch (IOException ignored) {}
         return connection;
+    }
+
+    private void onConnected(Connection connection) {
+        Manager.getManager().setConnection(connection);
+        Manager.refresh();
     }
 
     private boolean checkEmpty(String s) {

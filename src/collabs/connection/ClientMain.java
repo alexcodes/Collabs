@@ -1,7 +1,9 @@
 package collabs.connection;
 
 import collabs.connection.client.ClientConnection;
-import collabs.model.events.RefreshListEvent;
+import collabs.model.core.Manager;
+import collabs.model.events.ServerDocumentEvent;
+import collabs.model.events.SubscribeDocumentEvent;
 
 import java.io.IOException;
 
@@ -11,15 +13,15 @@ import java.io.IOException;
  * Time: 0:02
  */
 public class ClientMain {
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, InterruptedException {
         Connection client = new ClientConnection("localhost", 1348);
         client.connect();
-        client.transmit(new RefreshListEvent());
-        //new RegisterDocumentEvent("text", "name", "path");
-        //client.transmit(new SubscribeDocumentEvent(Manager.getManager().getSelectedId()));
-        //client.transmit(new ServerDocumentEvent(1, 5, "", "a"));
+        //client.transmit(new RefreshListEvent());
+        //client.transmit(new RegisterDocumentEvent("text", "name", "path"));
+        client.transmit(new SubscribeDocumentEvent(Manager.getManager().getSelectedId()));
+        for (int i = 0; i < 10; i++) {
+            client.transmit(new ServerDocumentEvent(1, 0, "", "NEW "));
 
-        //client.transmit("Message");
-        //client.transmit(123);
+        }
     }
 }
