@@ -4,6 +4,7 @@ import collabs.model.data.ServerDocument;
 import collabs.model.events.EventList;
 import collabs.model.events.SimpleEventList;
 import com.intellij.openapi.editor.Document;
+import com.intellij.openapi.editor.event.DocumentListener;
 import com.intellij.ui.components.JBList;
 
 import javax.swing.*;
@@ -22,10 +23,26 @@ public class ToolbarModel {
     private JTextArea consoleView;
     private ServerDocument[] documents;
     private Map<Integer, Document> documentMap = new HashMap<Integer, Document>();
+    private Map<Document, DocumentListener> docListenerMap = new HashMap<Document, DocumentListener>();
     private EventList eventList = new SimpleEventList();
+
+    private ToolbarModel() {}
 
     public static ToolbarModel getToolbarModel() {
         return model;
+    }
+
+    public void addDocumentListener(Document document, DocumentListener documentListener) {
+        if (! docListenerMap.containsKey(document)) {
+            docListenerMap.put(document, documentListener);
+        }
+    }
+
+    public void removeDocumentListener(Document document) {
+        DocumentListener documentListener = docListenerMap.get(document);
+        if (documentListener != null) {
+            document.removeDocumentListener(documentListener);
+        }
     }
 
     public EventList getEventList() {
@@ -69,14 +86,23 @@ public class ToolbarModel {
      * Checks whether document was bound.
      * @param document Document in editor
      * @return {@code true} if was bound and
-     * {@code false} if was not
+     * {@code false} otherwise
      */
-    public boolean checkBindDocument(Document document) {
+    public boolean isDocumentBound(Document document) {
         return documentMap.containsValue(document);
     }
 
     public Document getDocumentById(int id) {
         return documentMap.get(id);
+    }
+
+    public int getIdByDocument(Document document) {
+        for (int id : documentMap.keySet()) {
+            if (documentMap.get(id) == document) {
+                return id;
+            }
+        }
+        return 0;
     }
 
     public int getSelectedId() {

@@ -2,6 +2,7 @@ package collabs.connection.client;
 
 import collabs.model.core.ToolbarModel;
 import collabs.model.events.RefreshListEvent;
+import collabs.model.events.ReplaceTextEvent;
 import collabs.model.events.ServerDocumentEvent;
 import collabs.output.Output;
 import com.intellij.openapi.application.ApplicationManager;
@@ -40,11 +41,28 @@ public class ClientConnection extends AbstractClientConnection {
                     }
                 });
             }
+            if (event instanceof ReplaceTextEvent) {
+                EventQueue.invokeLater(new Runnable() {
+                    @Override
+                    public void run() {
+                        replaceText((ReplaceTextEvent) event);
+                    }
+                });
+            }
         }
     }
 
     private void refreshList(RefreshListEvent event) {
         ToolbarModel.getToolbarModel().setDocuments(event.getDocuments());
+    }
+
+    private void replaceText(final ReplaceTextEvent event) {
+        ApplicationManager.getApplication().runWriteAction(new Runnable() {
+            @Override
+            public void run() {
+                ToolbarModel.getToolbarModel().getDocumentById(event.getDocumentId()).setText(event.getText());
+            }
+        });
     }
 
     private void changeDocument(final ServerDocumentEvent event) {

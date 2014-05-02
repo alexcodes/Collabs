@@ -14,7 +14,7 @@ public class RegisterDocumentEvent extends ServerEvent {
     private String path;
 
     public RegisterDocumentEvent(String text, String name, String path) {
-        this.text = text;
+        this.text = (text == null) ? "" : text;
         this.name = name;
         this.path = path;
     }

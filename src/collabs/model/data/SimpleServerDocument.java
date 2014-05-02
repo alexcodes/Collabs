@@ -33,6 +33,9 @@ public class SimpleServerDocument implements ServerDocument {
     }
 
     public SimpleServerDocument(String text, String name, String path) {
+        if (text == null || name == null || path == null) {
+            throw new IllegalArgumentException("Arguments cannot be null in Document");
+        }
         this.text = text;
         this.name = name;
         this.path = path;

@@ -33,11 +33,19 @@ public class Manager {
         return connection;
     }
 
+    public void resetAll() {
+        resetConnection();
+    }
+
     public void resetConnection() {
         if (connection != null) {
             connection.disconnect();
             connection = null;
         }
+    }
+
+    public boolean isConnected() {
+        return connection != null;
     }
 
     public void setServer(Server server) {

@@ -32,40 +32,43 @@ public class BindDocumentAction extends AnAction {
     @Override
     public void actionPerformed(AnActionEvent e) {
         try {
-            //TODO replace by gui choice
             int id = getSelectedId();
             if (id == 0) {
                 Messages.showErrorDialog("No document was selected", "Error");
                 return;
             }
             Document document = e.getData(PlatformDataKeys.EDITOR).getDocument();
-            if (ToolbarModel.getToolbarModel().checkBindDocument(document)) {
+            if (ToolbarModel.getToolbarModel().isDocumentBound(document)) {
                 Messages.showErrorDialog("This document was already binded", "Error");
                 return;
             }
 
-            document.addDocumentListener(new ExtendedDocumentListener(id) {
-                @Override
-                public void beforeDocumentChange(DocumentEvent event) {
-                    //nothing
-                }
+//            DocumentListener documentListener = new ExtendedDocumentListener(id) {
+//                @Override
+//                public void beforeDocumentChange(DocumentEvent event) {
+//                    //nothing
+//                }
+//
+//                @Override
+//                public void documentChanged(DocumentEvent event) {
+//                    ServerDocumentEvent serverDocumentEvent = new ServerDocumentEvent(
+//                            getId(),
+//                            event.getOffset(),
+//                            event.getOldFragment(),
+//                            event.getNewFragment()
+//                    );
+//                    long timestamp = ToolbarModel.getToolbarModel().getEventList().checkDuplicate(serverDocumentEvent);
+//                    if (timestamp == EventList.NO_DUPLICATE) {
+//                        Manager.getManager().getConnection().transmit(serverDocumentEvent);
+//                    } else {
+//                        ToolbarModel.getToolbarModel().getEventList().removeEvent(timestamp, serverDocumentEvent);
+//                    }
+//                }
+//            };
+            DocumentListener documentListener = new ExtendedDocumentListener(id);
+            document.addDocumentListener(documentListener);
+            ToolbarModel.getToolbarModel().addDocumentListener(document, documentListener);
 
-                @Override
-                public void documentChanged(DocumentEvent event) {
-                    ServerDocumentEvent serverDocumentEvent = new ServerDocumentEvent(
-                            getId(),
-                            event.getOffset(),
-                            event.getOldFragment(),
-                            event.getNewFragment()
-                    );
-                    long timestamp = ToolbarModel.getToolbarModel().getEventList().checkDuplicate(serverDocumentEvent);
-                    if (timestamp == EventList.NO_DUPLICATE) {
-                        Manager.getManager().getConnection().transmit(serverDocumentEvent);
-                    } else {
-                        ToolbarModel.getToolbarModel().getEventList().removeEvent(timestamp, serverDocumentEvent);
-                    }
-                }
-            });
             Manager.getManager().getConnection().transmit(new SubscribeDocumentEvent(id));
             ToolbarModel.getToolbarModel().addBindDocument(id, document);
             Messages.showInfoMessage("Document was linked to server one", "Success");
@@ -80,15 +83,36 @@ public class BindDocumentAction extends AnAction {
         return ToolbarModel.getToolbarModel().getSelectedId();
     }
 
-    private abstract class ExtendedDocumentListener implements DocumentListener {
+    private class ExtendedDocumentListener implements DocumentListener {
         private int id;
 
         public ExtendedDocumentListener(int id) {
             this.id = id;
         }
 
-        public int getId() {
+        public int getDocumentId() {
             return id;
+        }
+
+        @Override
+        public void beforeDocumentChange(DocumentEvent event) {
+            //nothing
+        }
+
+        @Override
+        public void documentChanged(DocumentEvent event) {
+            ServerDocumentEvent serverDocumentEvent = new ServerDocumentEvent(
+                    getDocumentId(),
+                    event.getOffset(),
+                    event.getOldFragment(),
+                    event.getNewFragment()
+            );
+            long timestamp = ToolbarModel.getToolbarModel().getEventList().checkDuplicate(serverDocumentEvent);
+            if (timestamp == EventList.NO_DUPLICATE) {
+                Manager.getManager().getConnection().transmit(serverDocumentEvent);
+            } else {
+                ToolbarModel.getToolbarModel().getEventList().removeEvent(timestamp, serverDocumentEvent);
+            }
         }
     }
 }

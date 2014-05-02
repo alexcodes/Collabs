@@ -1,5 +1,8 @@
 package collabs.model.actions;
 
+import collabs.model.core.Manager;
+import collabs.model.core.ToolbarModel;
+import collabs.model.events.UnsubscribeDocumentEvent;
 import com.intellij.openapi.actionSystem.AnAction;
 import com.intellij.openapi.actionSystem.AnActionEvent;
 import com.intellij.openapi.actionSystem.PlatformDataKeys;
@@ -26,9 +29,14 @@ public class UnbindDocumentAction extends AnAction {
     public void actionPerformed(AnActionEvent e) {
         try {
             Document document = e.getData(PlatformDataKeys.EDITOR).getDocument();
-            //document.removeDocumentListener();
+            int id = ToolbarModel.getToolbarModel().getIdByDocument(document);
+            if (id != 0) {
+                Manager.getManager().getConnection().transmit(new UnsubscribeDocumentEvent(id));
+                ToolbarModel.getToolbarModel().removeDocumentListener(document);
+                ToolbarModel.getToolbarModel().removeBindDocument(id);
+            }
 
-            Messages.showInfoMessage("Document was unlinked from server one", "Success");
+            Messages.showInfoMessage("Document was unbound from server one", "Success");
         } catch (Exception ex) {
             Messages.showErrorDialog("Cannot unbind this document. Try again!", "Error");
         }

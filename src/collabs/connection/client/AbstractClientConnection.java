@@ -1,6 +1,7 @@
 package collabs.connection.client;
 
 import collabs.connection.Connection;
+import collabs.model.core.Manager;
 import collabs.output.Output;
 
 import java.io.IOException;
@@ -40,6 +41,7 @@ abstract class AbstractClientConnection extends Thread implements Connection {
         while (! isInterrupted()) {
             handleEvent(receive());
         }
+        Manager.getManager().resetAll();
         Output.print("Client finished");
     }
 

@@ -51,12 +51,15 @@ public class SimpleServerConnection extends AbstractServerConnection {
 
     private void registerDocument(RegisterDocumentEvent event, Container container) {
         container.addDocument(event.getServerDocument());
-        refreshDocumentList(container);
+        RefreshListEvent listEvent = refreshDocumentList(container);
+        getServer().sendOn(this, listEvent);
         Output.print(container.toString());
     }
 
     private void subscribeDocument(SubscribeDocumentEvent event, Container container) {
-        ServerDocument doc = container.getDocumentById(event.getId());
+        ServerDocument doc = container.getDocumentById(event.getDocumentId());
+        ReplaceTextEvent replaceTextEvent = new ReplaceTextEvent(doc.getID(), doc.getText());
+        transmit(replaceTextEvent);
         doc.addListener(new ServerDocumentListener(this) {
             @Override
             public void documentChanged(ServerDocumentEvent event) {
@@ -75,8 +78,9 @@ public class SimpleServerConnection extends AbstractServerConnection {
         doc.handleEvent(event, this);
     }
 
-    private void refreshDocumentList(Container container) {
+    private RefreshListEvent refreshDocumentList(Container container) {
         RefreshListEvent listEvent = new RefreshListEvent(container.getDocuments());
         transmit(listEvent);
+        return listEvent;
     }
 }

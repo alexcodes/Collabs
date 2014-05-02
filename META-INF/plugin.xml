@@ -46,7 +46,7 @@
               text="Disconnect" description="Disconnect from server"/>
       <action class="collabs.model.actions.RegisterDocumentAction" id="actions.RegisterDocumentAction"
               text="Register Document" description="Create copy of this document on server"/>
-      <action class="collabs.model.actions.BindDocumentAction" id="actions.AddListenerAction"
+      <action class="collabs.model.actions.BindDocumentAction" id="actions.BindDocumentAction"
               text="Bind Document" description="Bind bidirectional this document and server one"/>
       <action class="collabs.model.actions.UnbindDocumentAction" id="actions.UnbindDocumentAction"
               text="Unbind Document" description="Unbind document and server one"/>
@@ -59,20 +59,22 @@
       <action class="collabs.model.actions.StartServerAction" id="actions.StartServerAction" text="Start Server"/>
       <action class="collabs.model.actions.StopServerAction" id="actions.StopServerAction" text="Stop Server"/>
 
+      <!--Delete-->
       <action class="collabs.model.actions.TestDialog" id="actions.TestDialog" text="Test Dialog"/>
 
-      <group id="CollabsMenu" text="Collabs" description="Menu for plugin options">
-          <add-to-group group-id="MainMenu" anchor="last"/>
-          <reference ref="actions.ConnectAction"/>
-          <reference ref="actions.DisconnectAction"/>
-          <reference ref="actions.RegisterDocumentAction"/>
-          <reference ref="actions.AddListenerAction"/>
-      </group>
+      <!--<group id="CollabsMenu" text="Collabs" description="Menu for plugin options">-->
+          <!--<add-to-group group-id="MainMenu" anchor="last"/>-->
+          <!--<reference ref="actions.ConnectAction"/>-->
+          <!--<reference ref="actions.DisconnectAction"/>-->
+          <!--<reference ref="actions.RegisterDocumentAction"/>-->
+          <!--<reference ref="actions.AddListenerAction"/>-->
+      <!--</group>-->
 
       <group id="CollabsEditor" popup="true" text="Collabs">
           <add-to-group anchor="last" group-id="EditorPopupMenu"/>
           <reference ref="actions.RegisterDocumentAction"/>
-          <reference ref="actions.AddListenerAction"/>
+          <reference ref="actions.BindDocumentAction"/>
+          <reference ref="actions.UnbindDocumentAction"/>
       </group>
   </actions>
 

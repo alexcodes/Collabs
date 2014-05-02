@@ -12,7 +12,7 @@ public class SubscribeDocumentEvent extends ServerEvent {
         this.id = id;
     }
 
-    public int getId() {
+    public int getDocumentId() {
         return id;
     }
 
