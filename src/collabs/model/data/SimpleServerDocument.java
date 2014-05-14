@@ -22,7 +22,7 @@ public class SimpleServerDocument implements ServerDocument {
     private String text;
     private String name;
     private String path;
-    private List<ServerDocumentListener> listeners = new ArrayList<ServerDocumentListener>();
+    private transient List<ServerDocumentListener> listeners = new ArrayList<ServerDocumentListener>();
 
     public SimpleServerDocument() {
         this("");

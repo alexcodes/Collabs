@@ -73,7 +73,7 @@ public class BindDocumentAction extends AnAction {
             ToolbarModel.getToolbarModel().addBindDocument(id, document);
             Messages.showInfoMessage("Document was linked to server one", "Success");
         } catch (Exception ex) {
-            Messages.showErrorDialog("Try again", "Error");
+            Messages.showErrorDialog("Cannot bind this document", "Error");
         }
     }
 

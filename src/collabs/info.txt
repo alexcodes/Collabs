@@ -2,13 +2,11 @@ Plugin for Intellij IDEA for real-time collaborative editing
 2014
 
 TODO unbind document (implementation)
-TODO sync texts when bind
-TODO send refresh to all when document added/deleted
 TODO fool protection null pointers in Manager (if connection lost -> deal with it!)
 TODO on disconnect (client) list->empty ...
+TODO replace path with package
 TODO exclude exception handlers from server
-TODO server inside plugin
-TODO enable/disable buttons toolbar (cancel connect if already connected, ...)
+TODO enable/disable buttons toolbar (disable connect if already connected, ...)
 
-TODO FIX not serializable exception when server transmit refresh (text==null?)
-TODO FIX replace index lazha
+TODO FIX double unbind exception
+

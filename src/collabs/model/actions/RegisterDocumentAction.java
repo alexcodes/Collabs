@@ -36,8 +36,8 @@ public class RegisterDocumentAction extends AnAction {
             String name = virtualFile.getName();
             String path = virtualFile.getPath();
 
-            ServerEvent shareDocumentEvent = new RegisterDocumentEvent(text, name, path);
-            Manager.getManager().getConnection().transmit(shareDocumentEvent);
+            ServerEvent registerDocumentEvent = new RegisterDocumentEvent(text, name, path);
+            Manager.getManager().getConnection().transmit(registerDocumentEvent);
 
             Messages.showInfoMessage("Document shared", "Success");
         } catch (NullPointerException ex) {

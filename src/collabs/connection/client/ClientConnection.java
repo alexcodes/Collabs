@@ -57,12 +57,17 @@ public class ClientConnection extends AbstractClientConnection {
     }
 
     private void replaceText(final ReplaceTextEvent event) {
-        ApplicationManager.getApplication().runWriteAction(new Runnable() {
-            @Override
-            public void run() {
-                ToolbarModel.getToolbarModel().getDocumentById(event.getDocumentId()).setText(event.getText());
-            }
-        });
+//        ApplicationManager.getApplication().runWriteAction(new Runnable() {
+//            @Override
+//            public void run() {
+//                ToolbarModel.getToolbarModel().getDocumentById(event.getDocumentId()).setText(event.getText());
+//            }
+//        });
+        Document doc = ToolbarModel.getToolbarModel().getDocumentById(event.getDocumentId());
+        ServerDocumentEvent clearDocumentEvent = new ServerDocumentEvent(event.getDocumentId(), 0, doc.getText(), "");
+        changeDocument(clearDocumentEvent);
+        ServerDocumentEvent replaceTextEvent = new ServerDocumentEvent(event.getDocumentId(), 0, "", event.getText());
+        changeDocument(replaceTextEvent);
     }
 
     private void changeDocument(final ServerDocumentEvent event) {
@@ -95,6 +100,6 @@ public class ClientConnection extends AbstractClientConnection {
 
     private void backspace(Document document, ServerDocumentEvent event) {
         ToolbarModel.getToolbarModel().getEventList().addEvent(event);
-        document.deleteString(event.getOffset(), event.getOldFragment().length());
+        document.deleteString(event.getOffset(), event.getOffset() + event.getOldFragment().length());
     }
 }
