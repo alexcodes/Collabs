@@ -11,11 +11,6 @@ import com.intellij.openapi.ui.Messages;
 import javax.swing.*;
 import java.io.IOException;
 
-/**
- * Author: Aleksey A.
- * Date: 16.03.14
- * Time: 0:16
- */
 public class ConnectAction extends AnAction {
     public ConnectAction() {
         super();
@@ -56,13 +51,6 @@ public class ConnectAction extends AnAction {
         } else {
             Messages.showErrorDialog("Cannot connect to " + ip + ":" + port, "Error");
         }
-
-        //anActionEvent.getActionManager().
-        //ApplicationManager.getApplication().getMessageBus()
-        //ProjectManager.getInstance().getOpenProjects()[0].getBaseDir().getFileSystem().findFileByPath("").move();
-        //ProjectManager.getInstance().getOpenProjects()[0]
-        //VirtualFileManager.getInstance().addVirtualFileListener(new SimpleVirtualFileListener());
-        //ProjectManager.getInstance().getOpenProjects()[0].getBaseDir().getFileSystem().addVirtualFileListener(new SimpleVirtualFileListener());
     }
 
     private Connection connect(String ip, String port) {

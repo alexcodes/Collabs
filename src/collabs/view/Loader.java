@@ -5,9 +5,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 /**
- * Author: Aleksey A.
- * Date: 03.04.14
- * Time: 18:02
+ * Simple resource loader
  */
 public class Loader {
     public static Icon getIcon(String path) {

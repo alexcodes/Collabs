@@ -5,9 +5,7 @@ import collabs.connection.server.Server;
 import collabs.model.events.RefreshListEvent;
 
 /**
- * Author: Aleksey A.
- * Date: 26.03.14
- * Time: 20:12
+ * Application manager. Holds all essential parts of plugin.
  */
 public class Manager {
     private static final Manager manager = new Manager();

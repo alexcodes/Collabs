@@ -15,11 +15,6 @@ import com.intellij.openapi.ui.Messages;
 
 import javax.swing.*;
 
-/**
- * Author: Aleksey A.
- * Date: 01.04.14
- * Time: 22:56
- */
 public class BindDocumentAction extends AnAction {
     public BindDocumentAction() {
         super();
@@ -43,28 +38,6 @@ public class BindDocumentAction extends AnAction {
                 return;
             }
 
-//            DocumentListener documentListener = new ExtendedDocumentListener(id) {
-//                @Override
-//                public void beforeDocumentChange(DocumentEvent event) {
-//                    //nothing
-//                }
-//
-//                @Override
-//                public void documentChanged(DocumentEvent event) {
-//                    ServerDocumentEvent serverDocumentEvent = new ServerDocumentEvent(
-//                            getId(),
-//                            event.getOffset(),
-//                            event.getOldFragment(),
-//                            event.getNewFragment()
-//                    );
-//                    long timestamp = ToolbarModel.getToolbarModel().getEventList().checkDuplicate(serverDocumentEvent);
-//                    if (timestamp == EventList.NO_DUPLICATE) {
-//                        Manager.getManager().getConnection().transmit(serverDocumentEvent);
-//                    } else {
-//                        ToolbarModel.getToolbarModel().getEventList().removeEvent(timestamp, serverDocumentEvent);
-//                    }
-//                }
-//            };
             DocumentListener documentListener = new ExtendedDocumentListener(id);
             document.addDocumentListener(documentListener);
             ToolbarModel.getToolbarModel().addDocumentListener(document, documentListener);
@@ -78,8 +51,6 @@ public class BindDocumentAction extends AnAction {
     }
 
     private int getSelectedId() {
-        //String[] values = new String[]{"one", "two", "three", "four", "five"};
-        //Messages.showEditableChooseDialog("Message", "Title", Messages.getInformationIcon(), values, "initialValue", null);
         return ToolbarModel.getToolbarModel().getSelectedId();
     }
 

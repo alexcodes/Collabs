@@ -12,11 +12,6 @@ import java.net.Socket;
 import java.util.HashSet;
 import java.util.Set;
 
-/**
- * Author: Aleksey A.
- * Date: 07.03.14
- * Time: 17:33
- */
 public class ServerCore implements Server {
     private static final int DEFAULT_PORT = 1348;
 
@@ -111,8 +106,6 @@ public class ServerCore implements Server {
             Connection connection = new SimpleServerConnection(this, socket);
             connection.connect();
             addConnection(connection);
-            //connections.add(connection);
-
         } catch (IOException e) {
             e.printStackTrace();
         }

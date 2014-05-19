@@ -1,17 +1,16 @@
 <idea-plugin version="2">
   <id>collabs</id>
   <name>Collabs</name>
-  <version>1.0</version>
-  <vendor email="support@yourcompany.com" url="http://www.yourcompany.com">YourCompany</vendor>
+  <version>1.0.1</version>
+  <vendor email="" url="">Collabs</vendor>
 
   <description><![CDATA[
-      Enter short description for your plugin here.<br>
-      <em>most HTML tags may be used</em>
+      This plugin allows you to develop with your colleagues in real time!<br>
+      Online collaborative development is now available.
     ]]></description>
 
   <change-notes><![CDATA[
-      Add change notes here.<br>
-      <em>most HTML tags may be used</em>
+      -
     ]]>
   </change-notes>
 
@@ -58,17 +57,6 @@
 
       <action class="collabs.model.actions.StartServerAction" id="actions.StartServerAction" text="Start Server"/>
       <action class="collabs.model.actions.StopServerAction" id="actions.StopServerAction" text="Stop Server"/>
-
-      <!--Delete-->
-      <action class="collabs.model.actions.TestDialog" id="actions.TestDialog" text="Test Dialog"/>
-
-      <!--<group id="CollabsMenu" text="Collabs" description="Menu for plugin options">-->
-          <!--<add-to-group group-id="MainMenu" anchor="last"/>-->
-          <!--<reference ref="actions.ConnectAction"/>-->
-          <!--<reference ref="actions.DisconnectAction"/>-->
-          <!--<reference ref="actions.RegisterDocumentAction"/>-->
-          <!--<reference ref="actions.AddListenerAction"/>-->
-      <!--</group>-->
 
       <group id="CollabsEditor" popup="true" text="Collabs">
           <add-to-group anchor="last" group-id="EditorPopupMenu"/>

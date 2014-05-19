@@ -4,9 +4,9 @@ import com.intellij.openapi.ui.InputValidator;
 import com.intellij.openapi.ui.Messages;
 
 /**
+ * Check whether {@code ip} is valid string
+ *
  * Author: Aleksey A.
- * Date: 26.03.14
- * Time: 19:28
  */
 class IPValidator implements InputValidator {
 
@@ -28,6 +28,11 @@ class IPValidator implements InputValidator {
         }
     }
 
+    /**
+     * Check whether ip is valid (IPv4)
+     * @param host -  string representation of IPv4
+     * @return - IP validity
+     */
     private boolean checkIP(String host) {
         if (host.equals("localhost")) {
             return true;

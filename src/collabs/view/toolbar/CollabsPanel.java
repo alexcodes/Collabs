@@ -11,11 +11,6 @@ import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
 import java.awt.*;
 
-/**
- * Author: Aleksey A.
- * Date: 27.03.14
- * Time: 19:53
- */
 public class CollabsPanel extends JPanel {
 
     public CollabsPanel() {

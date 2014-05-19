@@ -12,9 +12,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Author: Aleksey A.
- * Date: 04.04.14
- * Time: 22:53
+ * Toolbar model contains information about documents.
  */
 public class ToolbarModel {
     private static ToolbarModel model = new ToolbarModel();

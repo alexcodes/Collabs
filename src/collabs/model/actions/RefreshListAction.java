@@ -8,11 +8,6 @@ import com.intellij.openapi.ui.Messages;
 
 import javax.swing.*;
 
-/**
- * Author: Aleksey A.
- * Date: 04.04.14
- * Time: 21:59
- */
 public class RefreshListAction extends AnAction {
     public RefreshListAction() {
         super();
@@ -26,7 +21,6 @@ public class RefreshListAction extends AnAction {
     public void actionPerformed(AnActionEvent e) {
         try {
             Manager.getManager().getConnection().transmit(new RefreshListEvent());
-            //Messages.showInfoMessage("Refresh request was sent", "Success");
         } catch (Exception ex) {
             Messages.showErrorDialog("Refresh request was not sent", "Error");
         }

@@ -15,11 +15,6 @@ import org.jetbrains.annotations.NotNull;
 
 import java.awt.*;
 
-/**
- * Author: Aleksey A.
- * Date: 27.03.14
- * Time: 19:36
- */
 public class CollabsProjectComponent implements ProjectComponent, CollabsConstants {
     private Project project;
     private CollabsPanel panel;

@@ -4,11 +4,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * Simple realization of {@code EventList}.
+ * Recognise duplicates if there is exact copy
+ * of {@code ServerDocumentEvent} occurred defined
+ * milliseconds ago.
+ *
  * Author: Aleksey A.
- * Date: 06.04.14
- * Time: 0:21
  */
 public class SimpleEventList implements EventList {
+    /**
+     * Time elapsed before event is recognised unique
+     */
     private static final long TIME_ELAPSED_MS = 200;
 
     private List<Pair> events;
@@ -58,6 +64,9 @@ public class SimpleEventList implements EventList {
         events = events.subList(index, events.size());
     }
 
+    /**
+     * Helper class to hold info about both event and timestamp
+     */
     private class Pair {
         private long timestamp;
         private ServerDocumentEvent event;

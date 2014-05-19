@@ -2,11 +2,6 @@ package collabs.model.events;
 
 import collabs.model.data.ServerDocument;
 
-/**
- * Author: Aleksey A.
- * Date: 04.04.14
- * Time: 21:37
- */
 public class RefreshListEvent extends ServerEvent {
     private ServerDocument[] documents;
 

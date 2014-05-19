@@ -7,11 +7,6 @@ import com.intellij.openapi.ui.Messages;
 
 import javax.swing.*;
 
-/**
- * Author: Aleksey A.
- * Date: 27.03.14
- * Time: 17:18
- */
 public class DisconnectAction extends AnAction {
     public DisconnectAction() {
         super();

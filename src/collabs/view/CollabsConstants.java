@@ -1,9 +1,7 @@
 package collabs.view;
 
 /**
- * Author: Aleksey A.
- * Date: 27.03.14
- * Time: 21:01
+ * Constants for graphic view of plugin
  */
 public interface CollabsConstants {
     public static final String PLUGIN_NAME = "Collabs";

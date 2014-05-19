@@ -76,13 +76,21 @@ abstract class AbstractServerConnection extends Thread implements Connection {
         return serverCore;
     }
 
+    /**
+     * Reset all tracks of this connection
+     */
     void clearConnection() {
         serverCore.removeConnection(this);
         serverCore.getDocuments().removeConnectionFromDocuments(this);
     }
 
+    /**
+     * Defines what to do with received event
+     * @param object - received data
+     */
     abstract void handleEvent(Object object);
 
+    @Override
     public String toString() {
         return socket.toString();
     }

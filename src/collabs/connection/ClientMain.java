@@ -7,11 +7,6 @@ import collabs.model.events.SubscribeDocumentEvent;
 
 import java.io.IOException;
 
-/**
- * Author: Aleksey A.
- * Date: 08.03.14
- * Time: 0:02
- */
 public class ClientMain {
     public static void main(String[] args) throws IOException, InterruptedException {
         Connection client = new ClientConnection("localhost", 1348);

@@ -10,9 +10,11 @@ import java.io.ObjectOutputStream;
 import java.net.Socket;
 
 /**
+ * Abstract client connection that defines
+ * some standard behaviour of transmitting
+ * and receiving data.
+ *
  * Author: Aleksey A.
- * Date: 07.03.14
- * Time: 23:00
  */
 abstract class AbstractClientConnection extends Thread implements Connection {
     private Socket socket;
@@ -70,5 +72,9 @@ abstract class AbstractClientConnection extends Thread implements Connection {
         }
     }
 
+    /**
+     * Defines what to do with received event
+     * @param object - received object of {@code Event}
+     */
     abstract void handleEvent(Object object);
 }

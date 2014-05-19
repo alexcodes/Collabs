@@ -1,10 +1,5 @@
 package collabs.model.events;
 
-/**
- * Author: Aleksey A.
- * Date: 28.03.14
- * Time: 22:06
- */
 public class ServerDocumentEvent extends ServerEvent {
     private int id;
     private String oldFragment;

@@ -1,9 +1,7 @@
 package collabs.output;
 
 /**
- * Author: Aleksey A.
- * Date: 07.03.14
- * Time: 18:06
+ * Printer whose output is system console
  */
 public class SimplePrinter implements Printer {
     @Override

@@ -3,9 +3,7 @@ package collabs.output;
 import collabs.model.core.ToolbarModel;
 
 /**
- * Author: Aleksey A.
- * Date: 04.04.14
- * Time: 22:50
+ * Printer whose output is plugin console
  */
 public class ConsoleViewPrinter implements Printer {
     @Override

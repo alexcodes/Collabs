@@ -5,11 +5,6 @@ import collabs.connection.Connection;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * Author: Aleksey A.
- * Date: 01.04.14
- * Time: 21:39
- */
 public class DocumentContainer implements Container {
     private Map<Integer, ServerDocument> documents = new HashMap<Integer, ServerDocument>();
 

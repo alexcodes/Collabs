@@ -12,11 +12,6 @@ import java.awt.*;
 import java.io.IOException;
 import java.net.Socket;
 
-/**
- * Author: Aleksey A.
- * Date: 07.03.14
- * Time: 22:44
- */
 public class ClientConnection extends AbstractClientConnection {
 
     public ClientConnection(String host, int port) throws IOException {
@@ -57,12 +52,6 @@ public class ClientConnection extends AbstractClientConnection {
     }
 
     private void replaceText(final ReplaceTextEvent event) {
-//        ApplicationManager.getApplication().runWriteAction(new Runnable() {
-//            @Override
-//            public void run() {
-//                ToolbarModel.getToolbarModel().getDocumentById(event.getDocumentId()).setText(event.getText());
-//            }
-//        });
         Document doc = ToolbarModel.getToolbarModel().getDocumentById(event.getDocumentId());
         ServerDocumentEvent clearDocumentEvent = new ServerDocumentEvent(event.getDocumentId(), 0, doc.getText(), "");
         changeDocument(clearDocumentEvent);

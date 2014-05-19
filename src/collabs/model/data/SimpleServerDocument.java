@@ -7,11 +7,6 @@ import collabs.output.Output;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Author: Aleksey A.
- * Date: 28.03.14
- * Time: 21:36
- */
 public class SimpleServerDocument implements ServerDocument {
     /**
      * Total number of documents, is used as ID.

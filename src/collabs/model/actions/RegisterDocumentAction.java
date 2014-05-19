@@ -12,11 +12,6 @@ import com.intellij.openapi.vfs.VirtualFile;
 
 import javax.swing.*;
 
-/**
- * Author: Aleksey A.
- * Date: 28.03.14
- * Time: 20:20
- */
 public class RegisterDocumentAction extends AnAction {
     public RegisterDocumentAction() {
         super();

@@ -1,9 +1,7 @@
 package collabs.output;
 
 /**
- * Author: Aleksey A.
- * Date: 07.03.14
- * Time: 18:04
+ * Access point to printing actions in whole application
  */
 public class Output {
     private static final Printer printer = new SimplePrinter();

@@ -8,11 +8,6 @@ import collabs.output.Output;
 
 import java.net.Socket;
 
-/**
- * Author: Aleksey A.
- * Date: 07.03.14
- * Time: 22:54
- */
 public class SimpleServerConnection extends AbstractServerConnection {
 
     public SimpleServerConnection(Server server, Socket socket) {

@@ -5,11 +5,6 @@ import collabs.model.data.SimpleServerDocument;
 import junit.framework.Assert;
 import junit.framework.TestCase;
 
-/**
- * Author: Aleksey A.
- * Date: 01.04.14
- * Time: 20:16
- */
 public class SimpleServerDocumentTest extends TestCase {
     public void testInsert_begin_good() throws Exception {
         String expected = "tabcde";

@@ -8,5 +8,7 @@ TODO replace path with package
 TODO exclude exception handlers from server
 TODO enable/disable buttons toolbar (disable connect if already connected, ...)
 
+TODO delete subscribe action?
+
 TODO FIX double unbind exception
 

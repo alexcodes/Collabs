@@ -4,9 +4,7 @@ import collabs.connection.Connection;
 import collabs.model.events.ServerDocumentEvent;
 
 /**
- * Author: Aleksey A.
- * Date: 28.03.14
- * Time: 21:55
+ * Class that listen to document changes
  */
 public abstract class ServerDocumentListener {
     private Connection connection;
@@ -19,5 +17,9 @@ public abstract class ServerDocumentListener {
         return connection;
     }
 
+    /**
+     * Defines what to do if document was changed
+     * @param event occurred
+     */
     public abstract void documentChanged(ServerDocumentEvent event);
 }

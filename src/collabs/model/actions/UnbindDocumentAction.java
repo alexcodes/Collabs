@@ -11,11 +11,6 @@ import com.intellij.openapi.ui.Messages;
 
 import javax.swing.*;
 
-/**
- * Author: Aleksey A.
- * Date: 03.04.14
- * Time: 15:14
- */
 public class UnbindDocumentAction extends AnAction {
     public UnbindDocumentAction() {
         super();

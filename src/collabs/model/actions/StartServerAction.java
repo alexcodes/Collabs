@@ -7,11 +7,6 @@ import com.intellij.openapi.actionSystem.AnAction;
 import com.intellij.openapi.actionSystem.AnActionEvent;
 import com.intellij.openapi.ui.Messages;
 
-/**
- * Author: Aleksey A.
- * Date: 26.03.14
- * Time: 19:27
- */
 public class StartServerAction extends AnAction {
     @Override
     public void actionPerformed(AnActionEvent e) {
