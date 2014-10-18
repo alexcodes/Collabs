@@ -3,11 +3,6 @@ package collabs.model.events;
 import collabs.model.data.ServerDocument;
 import collabs.model.data.SimpleServerDocument;
 
-/**
- * Author: Aleksey A.
- * Date: 31.03.14
- * Time: 22:57
- */
 public class RegisterDocumentEvent extends ServerEvent {
     private String text;
     private String name;

@@ -11,19 +11,19 @@ import collabs.connection.Connection;
 public interface Container {
     /**
      * Adds document to container. Duplicate will replace older one.
-     * @param document - new document
+     * @param document new document
      */
     public void addDocument(ServerDocument document);
 
     /**
      * Removes document from container if it contains it.
-     * @param document - removed document
+     * @param document removed document
      */
     public void removeDocument(ServerDocument document);
 
     /**
      * Removes connection from all document in container.
-     * @param connection - connection that abandon subscription
+     * @param connection connection that abandon subscription
      */
     public void removeConnectionFromDocuments(Connection connection);
 

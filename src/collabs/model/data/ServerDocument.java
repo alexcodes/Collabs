@@ -6,9 +6,9 @@ import collabs.model.events.ServerDocumentEvent;
 import java.io.Serializable;
 
 /**
+ * Represents documents on server side
+ *
  * Author: Aleksey A.
- * Date: 28.03.14
- * Time: 21:32
  */
 public interface ServerDocument extends Serializable {
     public int getID();

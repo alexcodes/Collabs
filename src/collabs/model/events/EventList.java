@@ -17,8 +17,8 @@ public interface EventList {
 
     /**
      * Removes exact copy of event
-     * @param timestamp - time ms
-     * @param event - event to be removed
+     * @param timestamp time ms
+     * @param event event to be removed
      */
     public void removeEvent(long timestamp, ServerDocumentEvent event);
 

@@ -30,8 +30,8 @@ class IPValidator implements InputValidator {
 
     /**
      * Check whether ip is valid (IPv4)
-     * @param host -  string representation of IPv4
-     * @return - IP validity
+     * @param host string representation of IPv4
+     * @return IP validity
      */
     private boolean checkIP(String host) {
         if (host.equals("localhost")) {

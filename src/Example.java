@@ -1,10 +1,12 @@
-/**
- * Author: Aleksey A.
- * Date: 22.04.14
- * Time: 11:44
+/*
+ * File for testing functionality
  */
 public class Example {
     public Example() {
         //
+    }
+
+    public static void main(String[] args) {
+
     }
 }

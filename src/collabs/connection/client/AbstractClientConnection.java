@@ -74,7 +74,7 @@ abstract class AbstractClientConnection extends Thread implements Connection {
 
     /**
      * Defines what to do with received event
-     * @param object - received object of {@code Event}
+     * @param object received object of {@code Event}
      */
     abstract void handleEvent(Object object);
 }

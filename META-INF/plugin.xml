@@ -1,12 +1,12 @@
 <idea-plugin version="2">
   <id>collabs</id>
   <name>Collabs</name>
-  <version>1.0.1</version>
-  <vendor email="" url="">Collabs</vendor>
+  <version>1.0.2</version>
+  <vendor email="alekseevmsc@gmail.com" url="https://github.com/alexcodes/Collabs">Collabs</vendor>
 
   <description><![CDATA[
-      This plugin allows you to develop with your colleagues in real time!<br>
-      Online collaborative development is now available.
+      This plugin gives an opportunity of <strong>real-time</strong> collaborative editing.
+      For more information, please, visit <a href="https://github.com/alexcodes/Collabs">site</a>.
     ]]></description>
 
   <change-notes><![CDATA[

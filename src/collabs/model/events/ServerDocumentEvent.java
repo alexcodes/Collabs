@@ -9,8 +9,8 @@ public class ServerDocumentEvent extends ServerEvent {
     public ServerDocumentEvent(int id, int offset, CharSequence oldFragment, CharSequence newFragment) {
         this.id = id;
         this.offset = offset;
-        this.oldFragment = (String) oldFragment;
-        this.newFragment = (String) newFragment;
+        this.oldFragment = oldFragment.toString();
+        this.newFragment = newFragment.toString();
     }
 
     public int getId() {
@@ -36,7 +36,7 @@ public class ServerDocumentEvent extends ServerEvent {
     }
 
     /**
-     * Example: id=12[offset=3; old="f"; new=""]
+     * Example1: id=12[offset=3; old="f"; new=""]
      * @return info
      */
     @Override

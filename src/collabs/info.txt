@@ -2,13 +2,11 @@ Plugin for Intellij IDEA for real-time collaborative editing
 2014
 
 TODO unbind document (implementation)
-TODO fool protection null pointers in Manager (if connection lost -> deal with it!)
+TODO protection null pointers in Manager (if connection lost -> deal with it!)
 TODO on disconnect (client) list->empty ...
 TODO replace path with package
 TODO exclude exception handlers from server
+TODO double unbind exception
 TODO enable/disable buttons toolbar (disable connect if already connected, ...)
 
-TODO delete subscribe action?
-
-TODO FIX double unbind exception
 

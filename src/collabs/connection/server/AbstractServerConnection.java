@@ -8,9 +8,11 @@ import java.io.ObjectOutputStream;
 import java.net.Socket;
 
 /**
+ * Abstract server connection that defines
+ * some standard behaviour of transmitting
+ * and receiving data.
+ *
  * Author: Aleksey A.
- * Date: 07.03.14
- * Time: 22:46
  */
 abstract class AbstractServerConnection extends Thread implements Connection {
     private Server serverCore;
@@ -86,7 +88,7 @@ abstract class AbstractServerConnection extends Thread implements Connection {
 
     /**
      * Defines what to do with received event
-     * @param object - received data
+     * @param object received data
      */
     abstract void handleEvent(Object object);
 

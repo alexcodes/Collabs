@@ -3,6 +3,9 @@ package collabs.connection;
 import collabs.connection.server.Server;
 import collabs.connection.server.ServerCore;
 
+/*
+ *  This class is used only as server example
+ */
 public class ServerMain {
     public static void main(String[] args) {
         if (args != null && args.length > 0) {

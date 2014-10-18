@@ -31,7 +31,7 @@ class PortValidator implements InputValidator {
 
     /**
      * Checks whether port number is valid or not
-     * @param port - port number
+     * @param port port number
      * @return {@code true} if {@code 0 < port < 65536}
      */
     private boolean checkPort(int port) {

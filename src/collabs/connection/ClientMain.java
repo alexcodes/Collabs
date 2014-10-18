@@ -7,6 +7,9 @@ import collabs.model.events.SubscribeDocumentEvent;
 
 import java.io.IOException;
 
+/*
+ *  This class is used only as client example
+ */
 public class ClientMain {
     public static void main(String[] args) throws IOException, InterruptedException {
         Connection client = new ClientConnection("localhost", 1348);
