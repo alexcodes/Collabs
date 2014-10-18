@@ -3,10 +3,7 @@
  */
 public class Example {
     public Example() {
+        //CommandProcessor.getInstance().executeCommand();
         //
-    }
-
-    public static void main(String[] args) {
-
     }
 }

@@ -2,7 +2,7 @@
   <id>collabs</id>
   <name>Collabs</name>
   <version>1.0.2</version>
-  <vendor email="alekseevmsc@gmail.com" url="https://github.com/alexcodes/Collabs">Collabs</vendor>
+  <vendor email="" url="https://github.com/alexcodes/Collabs">Collabs</vendor>
 
   <description><![CDATA[
       This plugin gives an opportunity of <strong>real-time</strong> collaborative editing.
@@ -10,7 +10,9 @@
     ]]></description>
 
   <change-notes><![CDATA[
-      -
+          <ul>
+            <li>
+          </ul>
     ]]>
   </change-notes>
 

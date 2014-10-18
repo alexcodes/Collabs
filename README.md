@@ -25,6 +25,10 @@ If you would like to share file in opened project with your collaborator, you ne
 * Click on the document by right mouse button
 * Choose <code>Collabs</code> menu item
 * Press <code>Register document</code>
+* Choose the document(just appeared) in document list on the plugin panel
+* Click on the created file by right mouse button
+* Choose <code>Collabs</code> menu item
+* Press <code>Bind document</code>
 
 After this copy of the document will be sent to server storage.<br>
 
