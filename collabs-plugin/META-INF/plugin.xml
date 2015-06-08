@@ -1,0 +1,77 @@
+<idea-plugin version="2">
+  <id>collabs</id>
+  <name>Collabs</name>
+  <version>2.1</version>
+  <vendor email="" url="">Alekseev Aleksey</vendor>
+
+  <description><![CDATA[
+      Plugin for real-time collaborative editing and issue tracking
+    ]]></description>
+
+  <change-notes><![CDATA[
+  <ul>
+    <li>Minor bug fixes
+  </ul>
+    ]]>
+  </change-notes>
+
+  <!-- please see https://confluence.jetbrains.com/display/IDEADEV/Build+Number+Ranges for description -->
+  <idea-version since-build="131"/>
+
+  <!-- please see https://confluence.jetbrains.com/display/IDEADEV/Plugin+Compatibility+with+IntelliJ+Platform+Products
+       on how to target different products -->
+  <!-- uncomment to enable plugin in all products
+  <depends>com.intellij.modules.lang</depends>
+  -->
+
+  <extensions defaultExtensionNs="com.intellij">
+    <!-- Add your extensions here -->
+  </extensions>
+
+  <application-components>
+    <!-- Add your application components here -->
+  </application-components>
+
+  <project-components>
+      <component>
+          <implementation-class>com.collabs.plugin.view.CollabsProjectComponent</implementation-class>
+      </component>
+  </project-components>
+
+  <actions>
+      <action id="actions.connect" class="com.collabs.plugin.actions.general.Connect" text="Connect"
+              description="Establish connection to server"/>
+      <action id="actions.disconnect" class="com.collabs.plugin.actions.general.Disconnect" text="Disconnect"
+              description="Disconnects from the server"/>
+      <action id="actions.registerAndBind" class="com.collabs.plugin.actions.document.RegisterAndBind" text="Register and Bind"
+              description="Register document and bind to the server"/>
+      <action id="actions.refreshDocuments" class="com.collabs.plugin.actions.document.RefreshDocuments"
+              text="Refresh document list" description="Refresh document list"/>
+      <action id="actions.bindDocument" class="com.collabs.plugin.actions.document.BindDocument" text="Bind Document"
+              description="Bind document to server"/>
+      <action id="actions.unbindDocument" class="com.collabs.plugin.actions.document.UnbindDocument"
+              text="Unbind Document" description="Unbind document from server"/>
+      <action id="actions.createIssue" class="com.collabs.plugin.actions.issue.CreateIssue" text="Create issue"
+              description="Create issue"/>
+      <action id="actions.editIssue" class="com.collabs.plugin.actions.issue.EditIssue" text="Edit issue"
+              description="Edit issue"/>
+      <action id="actions.startServer" class="com.collabs.plugin.actions.general.StartServer" text="Start server"
+              description="Start server"/>
+      <action id="actions.StopServer" class="com.collabs.plugin.actions.general.StopServer" text="Stop server"
+              description="Stop server"/>
+      <action id="actions.assignIssue" class="com.collabs.plugin.actions.issue.AssignIssue" text="Assign Issue"
+              description="Assign Issue"/>
+      <action id="actions.setClientInfo" class="com.collabs.plugin.actions.general.SetClientInfo" text="User Info"
+              description="Set user information"/>
+      <action id="actions.test" class="com.collabs.plugin.actions.TestAction" text="Test" description="Test"/>
+      <group id="CollabsEditor" popup="true" text="Collabs">
+          <add-to-group anchor="last" group-id="EditorPopupMenu"/>
+          <reference ref="actions.registerAndBind"/>
+          <reference ref="actions.bindDocument"/>
+          <reference ref="actions.unbindDocument"/>
+          <reference ref="actions.createIssue"/>
+          <reference ref="actions.setClientInfo"/>
+      </group>
+  </actions>
+
+</idea-plugin>

@@ -4,7 +4,7 @@ Collabs
 Download: [http://plugins.jetbrains.com/plugin/7466](http://plugins.jetbrains.com/plugin/7466?pr=idea)
 
 ##Description
-This plugin gives an opportunity of **real-time** collaborative editing.
+This plugin gives an opportunity of **real-time** collaborative editing and issue tracking.
 
 ##How to start
 * Install the plugin by going to <code>Settings -> Plugins -> Browse repositories</code> and then search for <code>Collabs</code>
@@ -12,7 +12,7 @@ This plugin gives an opportunity of **real-time** collaborative editing.
 
 ##Run server
 * Go to plugin folder (Windows: <code>/.IntelliJIdea{version}/config/plugins/</code>)
-* Run the plugin from command line <code>java -jar Co-Edit-Plugin.jar</code> (default port number is <code>1348</code>)
+* Run the plugin from command line <code>java -jar Collabs.jar</code> (default port number is <code>8081</code>)
 * You may change port number by giving it as an argument
 
 ##Connecting to server
